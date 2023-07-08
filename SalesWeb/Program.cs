@@ -10,8 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SalesWebContext>(options =>
     options.UseMySql("Server=localhost;uid=root;password=123456;database=saleswebmvcappdb", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.33-mysql")));
 
-builder.Services.AddScoped<SellerService>();
-builder.Services.AddScoped<DepartmentService>();
+IServiceCollection serviceCollection = builder.Services.AddScoped<SellerService>();
+serviceCollection.AddScoped<DepartmentService>();
 
 var enUS = new CultureInfo("en-US");
 var localizationOptions = new RequestLocalizationOptions

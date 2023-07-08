@@ -2,6 +2,7 @@
 using SalesWeb.Models;
 using Microsoft.EntityFrameworkCore;
 using SalesWeb.Services.Exceptions;
+using System.Linq;
 
 namespace SalesWeb.Services
 {
