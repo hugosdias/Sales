@@ -1,0 +1,48 @@
+﻿@model SalesWeb.Models.Seller
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 style="color: black">Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-1">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-11">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-1">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-11">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt class="col-sm-1">
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+        <dd class="col-sm-11">
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        <dt class="col-sm-1">
+            @Html.DisplayNameFor(model => model.BaseSalary)
+        </dt>
+        <dd class="col-sm-11">
+            @Html.DisplayFor(model => model.BaseSalary)
+        </dd>
+        <dt class="col-sm-1">
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+        <dd class="col-sm-11">
+            @Html.DisplayFor(model => model.Department.Name)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Edit" class="btn btn-success" />
+        <a asp-action="Index" class="btn btn-light">Back to List</a>
+    </form>
+</div>
