@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 namespace SalesWeb.Models
@@ -6,6 +8,8 @@ namespace SalesWeb.Models
     public class Department
     {
         public int Id { get; set; }
+        
+        [Display(Name = "Department")]
         public string Name { get; set; }
         public ICollection<Seller> Sellers { get; set; } = new List<Seller>();
 
@@ -25,6 +29,10 @@ namespace SalesWeb.Models
         public double TotalSales(DateTime initial, DateTime final)
         {
             return Sellers.Sum(seller =>  seller.TotalSales(initial, final));
+        }
+        public override string ToString()
+        {
+            return Name;
         }
     }
 }

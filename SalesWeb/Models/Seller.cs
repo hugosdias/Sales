@@ -62,7 +62,5 @@ namespace SalesWeb.Models
         {
             return Sales.Where(sale => sale.Date >= initial && sale.Date <= final).Sum(sale => sale.Amount);
         }
-
-
     }
 }
