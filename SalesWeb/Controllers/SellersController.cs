@@ -58,8 +58,16 @@ namespace SalesWeb.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            await _sellerService.RemoveAsync(id);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                await _sellerService.RemoveAsync(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch (IntegrityException e)
+            {
+
+                return RedirectToAction(nameof(Error), new {message = e.Message});
+            }
         }
 
         public async Task<IActionResult> Details(int? id)
@@ -87,7 +95,7 @@ namespace SalesWeb.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id Not Found." });
             }
             List<Department> departments = await _departmentService.FindAllAsync();
-            SellerFormViewModel viewModel = new SellerFormViewModel { Seller = obj, Departments = departments };
+            SellerFormViewModel viewModel = new() { Seller = obj, Departments = departments };
             return View(viewModel);
         }
         [HttpPost]
