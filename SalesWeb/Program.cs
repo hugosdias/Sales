@@ -12,6 +12,7 @@ builder.Services.AddDbContext<SalesWebContext>(options =>
 
 IServiceCollection serviceCollection = builder.Services.AddScoped<SellerService>();
 serviceCollection.AddScoped<DepartmentService>();
+serviceCollection.AddScoped<SalesRecordService>();
 
 var enUS = new CultureInfo("en-US");
 var localizationOptions = new RequestLocalizationOptions
