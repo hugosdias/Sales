@@ -14,12 +14,12 @@ IServiceCollection serviceCollection = builder.Services.AddScoped<SellerService>
 serviceCollection.AddScoped<DepartmentService>();
 serviceCollection.AddScoped<SalesRecordService>();
 
-var enUS = new CultureInfo("en-US");
+var ptBR = new CultureInfo("pt-BR");
 var localizationOptions = new RequestLocalizationOptions
 {
-    DefaultRequestCulture = new RequestCulture(enUS),
-    SupportedCultures = new List<CultureInfo> { enUS },
-    SupportedUICultures = new List<CultureInfo> { enUS }
+    DefaultRequestCulture = new RequestCulture(ptBR),
+    SupportedCultures = new List<CultureInfo> { ptBR },
+    SupportedUICultures = new List<CultureInfo> { ptBR }
 };
 
 

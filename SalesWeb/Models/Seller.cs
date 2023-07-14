@@ -10,6 +10,7 @@ namespace SalesWeb.Models
 
         [Required(ErrorMessage = "{0} required")]
         [StringLength(60, MinimumLength = 3, ErrorMessage = "{0} size should be between {2} and {1}")]
+        [Display(Name = "Seller Name")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "{0} required")]
@@ -31,6 +32,7 @@ namespace SalesWeb.Models
         public double BaseSalary { get; set; }
 
         public Department Department { get; set; }
+        [Display(Name = "Department")]
         public int DepartmentId { get; set; }
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
 
