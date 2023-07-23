@@ -4,11 +4,16 @@ using SalesWeb.Data;
 using SalesWeb.Services;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using MySql.Data.MySqlClient;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
 builder.Services.AddDbContext<SalesWebContext>(options =>
-    options.UseMySql("Server=localhost;uid=root;password=123456;database=saleswebmvcappdb", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.33-mysql")));
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 IServiceCollection serviceCollection = builder.Services.AddScoped<SellerService>();
 serviceCollection.AddScoped<DepartmentService>();
@@ -16,7 +21,7 @@ serviceCollection.AddScoped<SalesRecordService>();
 
 var ptBR = new CultureInfo("pt-BR");
 var localizationOptions = new RequestLocalizationOptions
-{
+{   
     DefaultRequestCulture = new RequestCulture(ptBR),
     SupportedCultures = new List<CultureInfo> { ptBR },
     SupportedUICultures = new List<CultureInfo> { ptBR }

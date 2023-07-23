@@ -45,10 +45,10 @@ namespace SalesWeb.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("Satus")
+                    b.Property<int>("SellerId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SellerId")
+                    b.Property<int>("Status")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -74,10 +74,13 @@ namespace SalesWeb.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
-                        .HasColumnType("longtext");
+                        .IsRequired()
+                        .HasMaxLength(60)
+                        .HasColumnType("varchar(60)");
 
                     b.HasKey("Id");
 
@@ -90,7 +93,9 @@ namespace SalesWeb.Migrations
                 {
                     b.HasOne("SalesWeb.Models.Seller", "Seller")
                         .WithMany("Sales")
-                        .HasForeignKey("SellerId");
+                        .HasForeignKey("SellerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Seller");
                 });

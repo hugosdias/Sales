@@ -19,6 +19,7 @@ namespace SalesWeb.Services
         {
             return await _context.Seller.Include(x => x.Department).ToListAsync();
         }
+
         public async Task InsertAsync(Seller obj)
         {
             _context.Add(obj);
@@ -47,7 +48,7 @@ namespace SalesWeb.Services
         public async Task UpdateAsync(Seller obj)
         {
             bool hasAny = await _context.Seller.AnyAsync(x => x.Id == obj.Id);
-            if (hasAny)
+            if (!hasAny)
             {
                 throw new NotFoundExecption("Id Not Found");
             }
